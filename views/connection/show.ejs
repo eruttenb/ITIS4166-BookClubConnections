@@ -1,0 +1,35 @@
+<%- include('../partials/header.ejs')%>
+    <main>
+        <h1 class="align-left"><%= connection.title%></h1>
+
+        <div class="align-right">
+            <h3><%= count%> members RSVP'd.</h3>
+
+            <%if(user == connection.host._id) {%>
+                    <form>
+                        <button type="submit" formmethod="GET" formaction="/connections/<%= connection.id%>/edit">Update</button>
+                        <button type="submit" formmethod="POST" formaction="/connections/<%= connection.id%>?_method=DELETE">Delete</button>
+                    </form>
+            <%} else {%>
+                    <h3>RSVP to attend!</h3>
+                    <form>
+                        <button type="submit" name="rsvpbutton" value="YES" formmethod="POST" formaction="/connections/<%= connection.id%>/rsvp">Yes</button>
+                        <button type="submit" name="rsvpbutton" value="NO" formmethod="POST" formaction="/connections/<%= connection.id%>/rsvp">No</button>
+                        <button type="submit" name="rsvpbutton" value="MAYBE" formmethod="POST" formaction="/connections/<%= connection.id%>/rsvp">Maybe</button>
+                    </form>
+            <%}%> 
+        </div>
+
+        <img src="<%= connection.image%>" alt="books">
+        
+        <h2><%= connection.host.firstName + ' ' + connection.host.lastName%></h2>
+        <h3>
+            <%= connection.location%> | <%= new Date(connection.date).toLocaleDateString('en-us', 
+            { weekday:"short", year:"numeric", month:"short", day:"numeric"})%> | 
+            <%= connection.start%> - <%= connection.end%>
+        </h3>
+        
+        <h1>Details</h1>
+        <p><%= connection.details%></p>
+    </main>
+    <%- include('../partials/footer.ejs')%>

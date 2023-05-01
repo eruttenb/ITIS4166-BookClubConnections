@@ -1,0 +1,53 @@
+<%- include('../partials/header.ejs')%>
+<main>
+    <h2>Welcome, <%=user.firstName + " " + user.lastName%></h2>
+    <h2><%=user.firstName%>'s Connections</h2>
+    <%if(connections.length) {%>
+        <table>
+            <tr>
+                <th>Connection</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+            <%connections.forEach(connection => {%>
+                <tr>
+                    <td>
+                        <a href='/connections/<%= connection.id%>'><p><%= connection.title%></p></a>
+                    </td>
+                    <td><%=connection.topic%></td>
+                    <td>
+                        <form class="align-center">
+                            <button type = "submit" formmethod = "GET" formaction = "/connections/<%= connection.id%>/edit">Update</button>
+                            <button type = "submit" formmethod = "POST" formaction = "/connections/<%= connection.id%>?_method=DELETE">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <%});%>
+        </table>
+    <%} else {%>
+        <p>You have not created any connections</p>
+    <%}%>
+
+    <h2><%=user.firstName%>'s RSVPs</h2>
+    <%if(rsvps.length) {%>
+        <table>
+            <tr>
+                <th>Connection</th>
+                <th>Category</th>
+                <th>Going?</th>
+            </tr>
+            <%rsvps.forEach(rsvp => {%>
+                <tr>
+                    <td>
+                        <a href='/connections/<%= rsvp.connection.id%>'><p><%= rsvp.connection.title%></p></a>
+                    </td>
+                    <td><%= rsvp.connection.topic%></td>
+                    <td><%= rsvp.response%></td>
+                </tr>
+            <%});%>
+        </table>
+    <%} else {%>
+        <p>You have not created any RSVPs</p>
+    <%}%>
+</main>
+    <%- include('../partials/footer.ejs')%>

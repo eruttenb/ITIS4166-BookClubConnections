@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Book Club Connections</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<body>
+    <header>
+        <!-- Logo -->
+        <div id="top-nav">
+            <a href="/">
+                <img src="/images/logo.png" alt="logo" id="logo" class="align-left">
+                <h2 id="main-title">Book Club Connections</h2>
+            </a>
+
+            <!-- User-specific navigation -->
+            <nav id="user-nav" class="align-right">
+                <ul>
+                    <li><a href="/connections/new">Start a new connection</a></li>
+                    
+                    <%if (!user) {%>
+                        <li class="divider">|</li>
+                        <li><a href="/users/login">Login</a></li>
+                        <li class="divider">|</li>
+                        <li><a href="/users/new">Sign up</a></li>
+                    <%} else {%>
+                        <li class="divider">|</li>
+                        <li><a href='/users/profile'>Profile</a></li>
+                        <li class="divider">|</li>
+                        <li><a href='/users/logout'>Logout</a></li>
+                    <%}%>
+                    
+                </ul>
+            </nav>
+        </div>
+
+        <!-- General site navigation -->
+        <nav id="bottom-nav">
+            <ul>
+                <li><a href="/connections">Connections</a></li>
+            </ul>
+        </nav>
+        
+        <%if(errorMessages.length > 0) {
+            errorMessages.forEach(message=>{%>
+                <div class="error"><%=message%></div>
+            <%});
+        }%>
+
+        <%if(successMessages.length > 0) {
+            successMessages.forEach(message=>{%>
+                <div class="success"><%=message%></div>
+            <%});
+        }%>
+    </header>

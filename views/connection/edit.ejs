@@ -1,0 +1,43 @@
+<%- include('../partials/header.ejs')%>
+    <main>
+        <form method = "POST" action = "/connections/<%= connection.id%>?_method=PUT">
+            <table>
+                <tr>
+                    <td><label for="topic">Topic</label></td>
+                    <td><input type="text" id="topic" name="topic" value="<%= connection.topic%>" required></td>
+                </tr>
+                <tr>
+                    <td><label for="title">Title</label></td>
+                    <td><input type="text" id="title" name="title" value="<%= connection.title%>" required></td>
+                </tr>
+                <tr>
+                    <td><label for="details">Details</label></td>
+                    <td><input type="text" id="details" name="details" value="<%= connection.details%>" required minLength="10"></td>
+                </tr>
+                <tr>
+                    <td><label for="location">Where</label></td>
+                    <td><input type="text" id="location" name="location" value="<%= connection.location%>" required></td>
+                </tr>
+                <tr>
+                    <td><label for="date">When</label></td>
+                    <td><input type="date" id="date" name="date" value="<%= connection.date%>" required></td>
+                </tr>
+                <tr>
+                    <td><label for="start">Start</label></td>
+                    <td><input type="time" id="start" name="start" value="<%= connection.start%>" required></td>
+                </tr>
+                <tr>
+                    <td><label for="end">End</label></td>
+                    <td><input type="time" id="end" name="end" value="<%= connection.end%>" required></td>
+                </tr>
+                <tr>
+                    <td><label for="image">Image URL</label></td>
+                    <td><input type="url" id="image" name="image" value="<%= connection.image%>" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Update Connection"></td>
+                </tr>
+            </table>
+        </form>
+    </main>
+    <%- include('../partials/footer.ejs')%>
